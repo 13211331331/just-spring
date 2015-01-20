@@ -9,8 +9,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestServerTest {
 
-    @Autowired
-    private TestServer testServer;
 
 
     public static void main(final String[] args) throws Exception {
