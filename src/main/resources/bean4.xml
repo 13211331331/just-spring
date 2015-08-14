@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="myaroundadvice" class="cn.iszt.hhl.MyAroundAdvice1"/>
+    <bean id="target" class="cn.iszt.hhl.UserLoginImpl"/>
+    <!-- 使用Spring代理工厂配置一个代理 -->
+    <bean id="userlogin" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 指定代理接口，如果是多个接口，可以使用List元素指定 -->
+        <property name="proxyInterfaces" value="cn.iszt.hhl.UserLogin"/>
+        <!-- 指定通知 -->
+        <property name="interceptorNames" value="myaroundadvice"/>
+        <!-- 指定目标对象 -->    <!-- 这个地方的name 我开始按照书上写的target报错，我进ProxyFactoryBean类看 没有target属性和set它的方法，有targetName属性修改了就对了-->
+        <property name="targetName" value="target"/>
+    </bean>
+</beans>

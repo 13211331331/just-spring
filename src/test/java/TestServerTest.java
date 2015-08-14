@@ -1,7 +1,4 @@
-import cn.iszt.hhl.MyHandler;
-import cn.iszt.hhl.TestServer;
-import cn.iszt.hhl.UserLogin;
-import cn.iszt.hhl.UserLoginImpl;
+import cn.iszt.hhl.*;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -38,6 +35,19 @@ public class TestServerTest {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("bean3.xml");
         UserLogin ul = (UserLogin) ctx.getBean("userlogin");
         ul.login("bbyshp");
+    }
+
+    @Test
+    public void testAop2() {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("bean4.xml");
+        User u = new User();
+        u.setId(1);
+        u.setUserName("张三");
+        u.setPassWord("123");
+        System.out.println(u);
+        UserLogin ul = (UserLogin) ctx.getBean("userlogin");
+
+        ul.saveUser(u);
     }
 
 
